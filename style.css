@@ -1245,57 +1245,67 @@ footer {
    ========================================= */
 
 /* Swirling Chakra/Rasengan custom cursor styling */
-body {
-    cursor: none;
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none;
+    }
+
+    a,
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .card {
+        cursor: none;
+    }
+
+    .cursor {
+        display: block;
+        width: 26px;
+        height: 26px;
+        border: 1.5px solid var(--primary-orange);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s, border-color 0.25s;
+        box-shadow: 0 0 10px rgba(255, 107, 0, 0.4), inset 0 0 8px rgba(255, 107, 0, 0.2);
+        will-change: transform;
+    }
+
+    .cursor-follower {
+        display: block;
+        width: 6px;
+        height: 6px;
+        background-color: var(--primary-gold);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        box-shadow: 0 0 12px 2px var(--primary-gold), 0 0 6px 1px var(--primary-orange);
+        transition: transform 0.1s ease;
+        will-change: transform;
+    }
+
+    .cursor.hover {
+        width: 44px;
+        height: 44px;
+        background-color: rgba(217, 4, 41, 0.08);
+        border-color: var(--accent-red);
+        box-shadow: 0 0 15px rgba(217, 4, 41, 0.5), inset 0 0 10px rgba(217, 4, 41, 0.3);
+    }
 }
 
-a,
-button,
-.btn-primary,
-.btn-secondary,
-.card {
-    cursor: none;
+/* Hide cursors by default on touch screens / mobile devices */
+@media (hover: none) or (pointer: coarse) {
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
 }
-
-.cursor {
-    width: 26px;
-    height: 26px;
-    border: 1.5px solid var(--primary-orange);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s, border-color 0.25s;
-    box-shadow: 0 0 10px rgba(255, 107, 0, 0.4), inset 0 0 8px rgba(255, 107, 0, 0.2);
-    will-change: transform;
-}
-
-.cursor-follower {
-    width: 6px;
-    height: 6px;
-    background-color: var(--primary-gold);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow: 0 0 12px 2px var(--primary-gold), 0 0 6px 1px var(--primary-orange);
-    transition: transform 0.1s ease;
-    will-change: transform;
-}
-
-.cursor.hover {
-    width: 44px;
-    height: 44px;
-    background-color: rgba(217, 4, 41, 0.08);
-    border-color: var(--accent-red);
-    box-shadow: 0 0 15px rgba(217, 4, 41, 0.5), inset 0 0 10px rgba(217, 4, 41, 0.3);
-}
-
-
 
 /* Canvas Background */
 #particle-canvas {
@@ -1306,6 +1316,12 @@ button,
     height: 100vh;
     z-index: -1;
     pointer-events: none;
+}
+
+@media (max-width: 768px), (hover: none) {
+    #particle-canvas {
+        display: none !important;
+    }
 }
 
 /* Typewriter */

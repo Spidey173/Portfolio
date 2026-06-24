@@ -126,61 +126,68 @@ document.addEventListener('DOMContentLoaded', () => {
        ADVANCED FEATURES
        ========================================= */
 
-    // 4. Custom Cursor
+    // 4. Custom Cursor (only for desktop with hover capabilities)
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
-    let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches && window.matchMedia('(hover: hover)').matches;
 
-    // Track mouse coordinates
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    }, { passive: true });
+    if (cursor && follower && hasFinePointer) {
+        let posX = 0, posY = 0, mouseX = 0, mouseY = 0;
 
-    // Smooth following using requestAnimationFrame and transform3d
-    function loop() {
-        posX += (mouseX - posX) / 6;
-        posY += (mouseY - posY) / 6;
+        // Track mouse coordinates
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        }, { passive: true });
+
+        // Smooth following using requestAnimationFrame and transform3d
+        function loop() {
+            posX += (mouseX - posX) / 6;
+            posY += (mouseY - posY) / 6;
+            
+            cursor.style.transform = `translate3d(${posX - 13}px, ${posY - 13}px, 0)`;
+            follower.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+            
+            requestAnimationFrame(loop);
+        }
+        loop();
+
+        // Cursor hover effects on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .card, .timeline-card, .skill-category-card, .education-card, .tag, .tag-pill, .tech-pill-small, .contact-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'), { passive: true });
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'), { passive: true });
+        });
+
+        // Magnetic Buttons
+        const magneticButtons = document.querySelectorAll('.hero-actions .btn-primary, .hero-actions .btn-secondary');
         
-        cursor.style.transform = `translate3d(${posX - 13}px, ${posY - 13}px, 0)`;
-        follower.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
-        
-        requestAnimationFrame(loop);
+        magneticButtons.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element
+                const y = e.clientY - rect.top;  // y position within the element
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const deltaX = (x - centerX) / centerX;
+                const deltaY = (y - centerY) / centerY;
+                
+                btn.style.transform = `translate3d(${deltaX * 8}px, ${deltaY * 8}px, 0)`;
+            }, { passive: true });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate3d(0px, 0px, 0px)`;
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 300);
+            }, { passive: true });
+        });
+    } else {
+        if (cursor) cursor.style.display = 'none';
+        if (follower) follower.style.display = 'none';
     }
-    loop();
-
-    // Cursor hover effects on interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn-primary, .btn-secondary, .card, .timeline-card, .skill-category-card, .education-card, .tag, .tag-pill, .tech-pill-small, .contact-item');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'), { passive: true });
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'), { passive: true });
-    });
-
-    // Magnetic Buttons
-    const magneticButtons = document.querySelectorAll('.hero-actions .btn-primary, .hero-actions .btn-secondary');
-    
-    magneticButtons.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element
-            const y = e.clientY - rect.top;  // y position within the element
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const deltaX = (x - centerX) / centerX;
-            const deltaY = (y - centerY) / centerY;
-            
-            btn.style.transform = `translate3d(${deltaX * 8}px, ${deltaY * 8}px, 0)`;
-        }, { passive: true });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = `translate3d(0px, 0px, 0px)`;
-            setTimeout(() => {
-                btn.style.transform = '';
-            }, 300);
-        }, { passive: true });
-    });
 
     // 5. Typewriter Effect
     const typeWriterElement = document.querySelector('.typewriter');
@@ -220,8 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(type, 300); 
     }
 
-    // 6. Vanilla-Tilt Initialization
-    if (typeof VanillaTilt !== "undefined") {
+    // 6. Vanilla-Tilt Initialization (disable on mobile/touch screens)
+    const isMobileDevice = window.innerWidth <= 768 || window.matchMedia('(hover: none)').matches;
+    
+    if (typeof VanillaTilt !== "undefined" && !isMobileDevice) {
         VanillaTilt.init(document.querySelectorAll(".project-card, .skill-category-card, .education-card"), {
             max: 10,
             speed: 400,
@@ -238,9 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Three.js WebGL Interactive Chakra Scene & GSAP Scroll
+    // 7. Three.js WebGL Interactive Chakra Scene & GSAP Scroll (disable on mobile/low-power screens to save battery and GPU cycles)
     const canvas = document.getElementById('particle-canvas');
-    if (canvas && typeof THREE !== 'undefined') {
+    if (canvas && typeof THREE !== 'undefined' && !isMobileDevice) {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 200;
