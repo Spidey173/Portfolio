@@ -52,7 +52,7 @@
     --radius-md: 12px;
     --radius-lg: 20px;
 
-    --space-section: clamp(8rem, 12vw, 14rem);
+    --space-section: clamp(6rem, 8vw, 10rem);
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-speed: 250ms;
@@ -243,7 +243,7 @@ ul {
 
 .section-header {
     max-width: 720px;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .section-header h2 {
@@ -2397,7 +2397,8 @@ body.modal-open {
         --space-section: clamp(3.25rem, 6vw, 4.5rem);
     }
 
-    body, [data-theme="dark"] body {
+    body,
+    [data-theme="dark"] body {
         background-attachment: scroll;
     }
 
@@ -2439,7 +2440,7 @@ body.modal-open {
         pointer-events: all;
     }
 
-    .nav-links > a:not(.nav-resume-btn):not(.github-nav-link) {
+    .nav-links>a:not(.nav-resume-btn):not(.github-nav-link) {
         font-size: clamp(1.25rem, 4vw, 1.55rem);
         font-weight: var(--weight-bold);
         color: var(--text-primary);
