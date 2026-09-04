@@ -2414,7 +2414,7 @@ body.modal-open {
         bottom: 0;
         height: calc(100vh - var(--nav-height));
         height: calc(100dvh - var(--nav-height));
-        background-color: color-mix(in srgb, var(--bg) 96%, transparent);
+        background-color: var(--bg);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         display: flex;
