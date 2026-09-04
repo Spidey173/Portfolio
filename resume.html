@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruthvi R — Resume</title>
+    <style>
+        :root {
+            --text-main: #000000;
+            --text-muted: #2b2b2b;
+            --accent: #f97316;
+            --bg-page: #0d0f12;
+            --surface-tool: rgba(18, 20, 24, 0.88);
+            --border-tool: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            color: var(--text-main);
+            line-height: 1.25;
+            background-color: var(--bg-page);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Top Action Toolbar */
+        .resume-toolbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--surface-tool);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-tool);
+            padding: 0.65rem 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .toolbar-inner {
+            width: 100%;
+            max-width: 8.5in;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .toolbar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.5rem 0.95rem;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 38px;
+        }
+
+        .toolbar-btn.back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f3f4f6;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .toolbar-btn.back-btn:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .toolbar-btn.download-btn {
+            background: #f97316;
+            color: #ffffff;
+            border: 1px solid #ea580c;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.3);
+        }
+
+        .toolbar-btn.download-btn:hover {
+            background: #ea580c;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Printable Resume Paper Canvas */
+        .resume-paper {
+            width: 8.5in;
+            background-color: #ffffff;
+            color: var(--text-main);
+            padding: 0.35in 0.45in;
+            margin: 1.5rem auto 3rem;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+            border-radius: 2px;
+            font-size: 10pt;
+        }
+
+        @page {
+            size: letter;
+            margin: 0;
+        }
+
+        @media screen and (min-width: 1025px) {
+            .resume-paper {
+                zoom: 1.07;
+            }
+        }
+
+        @media print {
+            .resume-toolbar {
+                display: none !important;
+            }
+
+            body {
+                background-color: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                min-height: auto !important;
+            }
+
+            .resume-paper {
+                width: 100% !important;
+                padding: 0.35in 0.45in !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                zoom: 1 !important;
+            }
+        }
+
+        /* Resume Content Styling */
+        a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #333333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 6pt;
+        }
+
+        .header h1 {
+            font-size: 20pt;
+            font-weight: normal;
+            font-variant: small-caps;
+            text-transform: uppercase;
+            margin-bottom: 2pt;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-info {
+            font-size: 9pt;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 5pt;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .separator {
+            color: #666666;
+            margin: 0 1pt;
+        }
+
+        .section-title {
+            font-size: 11pt;
+            font-weight: bold;
+            font-variant: small-caps;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 1pt;
+            margin-top: 7pt;
+            margin-bottom: 3pt;
+            letter-spacing: 0.3px;
+        }
+
+        .skills-line {
+            font-size: 9.2pt;
+            margin-bottom: 2pt;
+        }
+
+        .skills-line strong {
+            font-weight: bold;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 3pt;
+            margin-bottom: 1pt;
+            gap: 0.5rem;
+        }
+
+        .item-title {
+            font-weight: bold;
+            font-size: 9.8pt;
+        }
+
+        .item-date {
+            font-weight: bold;
+            font-size: 9.2pt;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .item-subtitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 9.2pt;
+            font-style: italic;
+            margin-bottom: 2pt;
+            gap: 0.5rem;
+        }
+
+        .item-inst {
+            font-style: italic;
+        }
+
+        .item-loc {
+            font-style: italic;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 14pt;
+            font-size: 9.2pt;
+            margin-bottom: 3pt;
+        }
+
+        li {
+            margin-bottom: 1.5pt;
+            padding-left: 1pt;
+        }
+
+        .resume-item {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        /* Mobile Responsive Viewport Adaptations */
+        @media screen and (max-width: 860px) {
+            body {
+                background-color: #ffffff;
+            }
+
+            .resume-toolbar {
+                padding: 0.6rem 0.85rem;
+                background: rgba(15, 17, 21, 0.95);
+            }
+
+            .toolbar-btn {
+                font-size: 0.82rem;
+                padding: 0.45rem 0.8rem;
+                min-height: 36px;
+            }
+
+            .resume-paper {
+                width: 100%;
+                max-width: 100%;
+                padding: 1.25rem 1rem 2.5rem;
+                margin: 0;
+                box-shadow: none;
+                border-radius: 0;
+                font-size: 9.8pt;
+            }
+
+            .header h1 {
+                font-size: 17pt;
+            }
+
+            .contact-info {
+                font-size: 8.8pt;
+                gap: 4pt 8pt;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 5pt;
+            }
+
+            .item-date {
+                text-align: left;
+                font-size: 8.8pt;
+                color: #444444;
+            }
+
+            .item-subtitle {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 3pt;
+            }
+
+            .item-loc {
+                text-align: left;
+            }
+
+            ul {
+                margin-left: 16pt;
+                font-size: 9.4pt;
+                line-height: 1.35;
+            }
+
+            li {
+                margin-bottom: 3pt;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- STICKY TOP ACTION TOOLBAR -->
+    <header class="resume-toolbar" role="banner">
+        <div class="toolbar-inner">
+            <a href="index.html" class="toolbar-btn back-btn" aria-label="Return to portfolio">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Portfolio
+            </a>
+            <button type="button" class="toolbar-btn download-btn" onclick="window.print()" aria-label="Download or print resume PDF">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download PDF
+            </button>
+        </div>
+    </header>
+
+    <!-- RESUME PAPER SHEET -->
+    <main class="resume-paper" id="resume-document">
+
+        <!-- HEADER -->
+        <header class="header">
+            <h1>Pruthvi R</h1>
+            <div class="contact-info">
+                <span>Bengaluru, Karnataka</span>
+                <span class="separator">|</span>
+                <span>+91-9538118708</span>
+                <span class="separator">|</span>
+                <a href="mailto:pruthvi.r0006@gmail.com">pruthvi.r0006@gmail.com</a>
+                <span class="separator">|</span>
+                <a href="https://www.linkedin.com/in/pruthvi-r-48ba9b2b4/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <span class="separator">|</span>
+                <a href="https://github.com/Spidey173" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+        </header>
+
+        <!-- SUMMARY -->
+        <section aria-labelledby="summary-title">
+            <div class="section-title" id="summary-title">Summary</div>
+            <div class="skills-line" style="text-align: justify;">
+                Python Backend Developer with hands-on experience building FastAPI/Flask APIs, PostgreSQL systems, and
+                retrieval-powered (RAG) applications, covering relational schema design, pre-warmed caching, and LLM
+                integration.
+            </div>
+        </section>
+
+        <!-- TECHNICAL SKILLS -->
+        <section aria-labelledby="skills-title">
+            <div class="section-title" id="skills-title">Technical Skills</div>
+            <div class="skills-line"><strong>Languages:</strong> Python, SQL, JavaScript</div>
+            <div class="skills-line"><strong>Backend:</strong> FastAPI, Flask, REST APIs</div>
+            <div class="skills-line"><strong>Databases:</strong> PostgreSQL, SQLite</div>
+            <div class="skills-line"><strong>Tools:</strong> Git, GitHub, Docker, Pytest</div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section aria-labelledby="exp-title">
+            <div class="section-title" id="exp-title">Experience</div>
+
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="item-title">AI Automation Intern</span>
+                    <span class="item-date">Apr 2026 – May 2026</span>
+                </div>
+                <div class="item-subtitle">
+                    <span class="item-inst">Coresium</span>
+                    <span class="item-loc">Remote</span>
+                </div>
+                <ul>
+                    <li>Built automation workflows using n8n and REST APIs to handle recurring client operations without manual
+                        intervention.</li>
+                    <li>Wrote validation scripts to catch data inconsistencies before they reached downstream systems.</li>
+                    <li>Integrated third-party services into backend systems, replacing manual data entry with automated API
+                        calls.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="item-header" style="margin-top: 4pt;">
+                    <span class="item-title">Python Full-Stack Intern</span>
+                    <span class="item-date">Feb 2025 – May 2025</span>
+                </div>
+                <div class="item-subtitle">
+                    <span class="item-inst">PyGenicArc</span>
+                    <span class="item-loc"><a href="https://github.com/Spidey173/Daily-Drop.git" target="_blank" rel="noreferrer">GitHub</a> | <a
+                            href="https://daily-drop-c96q-f5su.onrender.com/" target="_blank" rel="noreferrer">Live Demo</a></span>
+                </div>
+                <ul>
+                    <li>Led a 4-member team through Agile sprints to build <strong>DailyDrop</strong>, a full-stack Flask
+                        e-commerce app with cart, checkout, wishlist, and an admin dashboard with sales analytics.</li>
+                    <li>Migrated from SQLite to Neon PostgreSQL with connection pooling and built a services layer
+                        separating business logic from route handlers for cleaner, testable code.</li>
+                    <li>Set up a CI/CD pipeline with GitHub Actions running 25 Pytest suites and Flake8 lint checks
+                        on every push across Python 3.10–3.12.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section aria-labelledby="projects-title">
+            <div class="section-title" id="projects-title">Projects</div>
+
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="item-title">InsightPDF – RAG Document Q&amp;A Platform <span
+                            style="font-weight: normal; font-size: 9pt; font-style: italic;">| Next.js 16, FastAPI, FAISS,
+                            BM25</span></span>
+                    <span class="item-date"><a href="https://github.com/Spidey173/InsightPDF.git" target="_blank" rel="noreferrer">GitHub</a> |
+                        <a href="https://huggingface.co/spaces/Spidey173/insightpdf" target="_blank" rel="noreferrer">Live Demo</a></span>
+                </div>
+                <ul>
+                    <li>Built a multi-PDF Q&amp;A tool that returns answers with page-level source citations, enabling users to
+                        verify claims against the exact document page.</li>
+                    <li>Enhanced retrieval quality by adding <strong>Cross-Encoder reranking</strong> over <strong>FAISS
+                            retrieval</strong> and built a swappable multi-LLM backend for seamless provider switching without
+                        code changes.</li>
+                    <li>Built a verification layer that filters hallucinated responses.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <div class="item-header" style="margin-top: 4pt;">
+                    <span class="item-title">ChibiBytes – AI Content Discovery Platform <span
+                            style="font-weight: normal; font-size: 9pt; font-style: italic;">| Flask, PostgreSQL, Gemini
+                            API</span></span>
+                    <span class="item-date"><a href="https://github.com/Spidey173/ChibiBytes" target="_blank" rel="noreferrer">GitHub</a> | <a
+                            href="https://chibibytes-vutq.onrender.com" target="_blank" rel="noreferrer">Live Demo</a></span>
+                </div>
+                <ul>
+                    <li>Built the full application stack: Flask backend on <strong>Neon PostgreSQL</strong> with SQLite
+                        fallback, in-memory catalog cache, and a Gemini-powered chatbot with intent-based query routing.</li>
+                    <li>Architected a modular Flask backend using <strong>Blueprints</strong>, <strong>Werkzeug</strong>
+                        password hashing, and REST APIs for user authentication and real-time watchlist management.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section aria-labelledby="edu-title">
+            <div class="section-title" id="edu-title">Education</div>
+
+            <div class="resume-item">
+                <div class="item-header">
+                    <span class="item-title">Master of Computer Applications (MCA)</span>
+                    <span class="item-date">2025 – 2027</span>
+                </div>
+                <div class="item-subtitle">
+                    <span class="item-inst">Jain University, Bengaluru</span>
+                    <span class="item-loc">CGPA: 8.45 / 10</span>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="item-header" style="margin-top: 3pt;">
+                    <span class="item-title">Bachelor of Computer Applications (BCA)</span>
+                    <span class="item-date">2022 – 2025</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section aria-labelledby="cert-title">
+            <div class="section-title" id="cert-title">Certifications</div>
+            <div class="skills-line" style="margin-top: 2pt;">
+                <strong>Meta Full-Stack Developer Specialization</strong> – Coursera (2025)
+            </div>
+
+            <div class="skills-line">
+                <strong>Microsoft SQL Server </strong> – Microsoft (2026)
+            </div>
+
+            <div class="skills-line">
+                <strong>Python Essentials 1</strong> – Cisco Networking Academy (2026)
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
