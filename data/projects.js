@@ -7,6 +7,77 @@
  */
 
 const PROJECT_MODAL_DATA = {
+    elina: {
+        title: "ElinaAI – Clinical Desk Assistant",
+        badge: "AI Vibe Coding & Web Engineering",
+        tags: ["React.js", "Python", "Claude Code", "AI Vibe Coding", "REST APIs"],
+        summary: "Developed front-desk clinic automation components and AI workflow integrations at ElinaAI, leveraging modern AI development tools (Claude Code, Codex) for high feature velocity.",
+        highlights: [
+            {
+                title: "AI Vibe-Coding Workflow",
+                desc: "Rapidly engineered, tested, and iterated application features using cutting-edge AI dev tools and LLM assistants."
+            },
+            {
+                title: "React & Python Integration",
+                desc: "Built dynamic frontend components in React.js paired with clean Python backend logic for clinical desk scheduling."
+            },
+            {
+                title: "Production Iteration Velocity",
+                desc: "Worked closely with core engineering to address real-time clinic requirements and optimize user workflows."
+            }
+        ],
+        flowSteps: [
+            {
+                title: "1. Feature Requirements & Prompt Architecture",
+                desc: "Translated clinic workflow requirements into structured code blueprints using AI coding tools."
+            },
+            {
+                title: "2. React UI Component Engineering",
+                desc: "Built clean, responsive UI interfaces for desk management, patient scheduling, and interaction tracking."
+            },
+            {
+                title: "3. Backend API & Logic Binding",
+                desc: "Integrated Python REST services and object-oriented handlers to manage state and data updates."
+            },
+            {
+                title: "4. Rapid Debugging & Deployment",
+                desc: "Iterated fast on user feedback, validating edge cases to maintain high reliability and performance."
+            }
+        ],
+        diagram: {
+            filename: "elinaai-architecture.spec",
+            code: `                     ┌───────────────────────────────────────────────┐
+                     │           ElinaAI Clinic Web Portal           │
+                     │  React.js · Clinical Front-Desk Interactive UI │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ REST API / JSON Payload
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │            Python Backend Services            │
+                     │    OOPS Logic · Scheduling & Automation Hub   │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ AI Vibe-Coding Pipeline (Claude Code / Codex)
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │       Sub-Second Feature Delivery & Fixes     │
+                     └───────────────────────────────────────────────┘`
+        },
+        decisions: [
+            {
+                title: "Why AI Vibe Coding?",
+                desc: "Accelerated development speed 3x by combining human guidance with AI generation for rapid prototyping."
+            },
+            {
+                title: "Why React & Python?",
+                desc: "Provided a responsive, component-driven frontend combined with pythonic simplicity for data processing."
+            }
+        ],
+        links: [
+            { label: "ElinaAI Company ↗", url: "https://wellfound.com/company/getelina", isPrimary: true }
+        ]
+    },
     insightpdf: {
         title: "InsightPDF",
         badge: "AI & Document Q&A",
