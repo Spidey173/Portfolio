@@ -196,6 +196,103 @@ const PROJECT_MODAL_DATA = {
             { label: "GitHub Repository", url: "https://github.com/Spidey173/InsightPDF", isPrimary: false }
         ]
     },
+    pythonquest: {
+        title: "Python Quest – Interactive DSA & Coding Workspace",
+        badge: "Interactive DSA & Interview Workspace",
+        tags: ["Next.js 15", "Python 3.12", "TypeScript", "Tailwind CSS", "AST Validation"],
+        summary: "A focused, distraction-free engineering workspace to master essential Python coding & DSA fundamentals for technical interviews, featuring interactive problem modules, abstract syntax tree (AST) safety inspection, and automated test runners.",
+        highlights: [
+            {
+                title: "In-Browser Code Execution & Sandboxing",
+                desc: "Safely parses, analyzes, and executes Python DSA algorithms with rapid sub-millisecond test evaluations."
+            },
+            {
+                title: "AST Validation Engine",
+                desc: "Uses static AST inspection to enforce clean code practices, time complexity constraints, and prevent insecure system calls."
+            },
+            {
+                title: "Automated Test Suite Runner",
+                desc: "Instant feedback loop running solutions against edge cases, corner inputs, and execution benchmarks with green passing indicators."
+            }
+        ],
+        flowSteps: [
+            {
+                title: "1. Problem & Constraint Definition",
+                desc: "Users review problem specifications, example inputs/outputs, and algorithmic time/space complexity expectations."
+            },
+            {
+                title: "2. Code Authoring in Next.js Editor",
+                desc: "Clean, syntax-highlighted editor with TypeScript support for rapid problem solving without visual distractions."
+            },
+            {
+                title: "3. AST Syntax & Static Analysis",
+                desc: "Parses code via AST to verify structural correctness and validate algorithmic invariants before execution."
+            },
+            {
+                title: "4. Test Suite Execution & Feedback",
+                desc: "Runs test cases across multiple test fixtures, displaying real-time pass/fail states and execution timing."
+            }
+        ],
+        diagram: {
+            filename: "pythonquest-architecture.spec",
+            code: `                     ┌───────────────────────────────────────────────┐
+                     │          Python Quest Workspace UI           │
+                     │  Next.js 15 · Problem Spec · Code Editor UI   │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ Submit Code Solution (JSON)
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │          AST Validation & Parsing Engine      │
+                     │  • Syntax Verification · Token Analysis       │
+                     │  • Security Guardrails & Import Filtering     │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ Verified Python AST
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │           Sandboxed Execution Runtime         │
+                     │       Python 3.12 · Isolated Test Worker      │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ Execute Parametrized Test Cases
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │          Automated Test Suite Runner          │
+                     │  • Edge-case inputs (Empty, Duplicates, Max)  │
+                     │  • Runtime & Memory Profiling                 │
+                     └───────────────────────┬───────────────────────┘
+                                             │
+                                             │ Real-Time Test Results & Telemetry
+                                             ▼
+                     ┌───────────────────────────────────────────────┐
+                     │    Interactive Feedback & Results Dashboard   │
+                     │      All Test Cases Passed · Sub-50ms Exec    │
+                     └───────────────────────────────────────────────┘`
+        },
+        decisions: [
+            {
+                title: "Why AST static validation?",
+                desc: "Validating user code with AST before execution ensures safe execution boundaries and verifies algorithmic requirements directly."
+            },
+            {
+                title: "Why Next.js 15 & TypeScript?",
+                desc: "Ensures type safety, ultra-fast client-side responsiveness, and seamless state management for code editor interactions."
+            },
+            {
+                title: "Why isolated test suites?",
+                desc: "Decoupling test harness logic ensures comprehensive edge-case coverage without risking test pollution between runs."
+            },
+            {
+                title: "Why distraction-free minimalist UI?",
+                desc: "Optimized specifically for deep focus during algorithmic problem solving and technical interview preparation."
+            }
+        ],
+        links: [
+            { label: "Live Demo ↗", url: "https://python-frontend-ruby.vercel.app/", isPrimary: true },
+            { label: "GitHub Repository", url: "https://github.com/Spidey173/Python.git", isPrimary: false }
+        ]
+    },
     zyra: {
         title: "Zyra – Social & Real-Time Messaging",
         badge: "Real-Time Social & WebSockets",

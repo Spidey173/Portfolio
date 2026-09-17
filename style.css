@@ -112,7 +112,6 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
     transition: background-color var(--transition-speed) var(--ease-out),
         color var(--transition-speed) var(--ease-out);
     overflow-x: hidden;
